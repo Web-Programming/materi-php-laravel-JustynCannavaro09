@@ -7,4 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Mahasiswa extends Model
 {
     protected $table = "mahasiswa";
+
+    public function prodi(){
+        return $this->belongTo(Prodi::class);
+    }
 }

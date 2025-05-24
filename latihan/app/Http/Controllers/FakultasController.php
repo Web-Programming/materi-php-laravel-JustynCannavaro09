@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\ControllerLatihan;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\Fakultas;
 use Illuminate\Http\Request;
 
 class FakultasController extends Controller
@@ -12,7 +12,10 @@ class FakultasController extends Controller
      */
     public function index()
     {
-        return(view('latihanLayout.fakultas.index'));
+        $listfakultas = Fakultas::all(); //select * from fakultas;
+        return view("fakultas.index", 
+            ['listfakultas' => $listfakultas]
+        );
     }
 
     /**
@@ -20,7 +23,7 @@ class FakultasController extends Controller
      */
     public function create()
     {
-        //
+        return view("fakultas.create");
     }
 
     /**
@@ -28,7 +31,14 @@ class FakultasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         //Form Validation
+        $data = $request->validate([
+            'nama' => 'required|min:3|max:4'
+        ]);
+        Fakultas::insert([
+            'nama' => $data['nama'],
+        ]);
+        return redirect("fakultas")->with("status", "Fakultas berhasil disimpan!");
     }
 
     /**
@@ -36,19 +46,7 @@ class FakultasController extends Controller
      */
     public function show(string $id)
     {
-        $fakultasList = [
-            1 => (object)[
-                    'nama' => 'Ilmu Komputer & Rekayasa',
-                    'deskripsi' => 'Fakultas yang membawahi jurusan ilmu komputer dan rekayasa'
-            ],
-            2 => (object)[
-                    'nama' => 'Ekonomi & Bisnis',
-                    'deskripsi' => 'Fakultas yang membawahi jurusan ekonomi dan bisnis'
-            ],
-        ];
-
-        $fakultas = $fakultasList[$id];
-        return view('latihanLayout.fakultas.detail', compact('fakultas'));
+        //
     }
 
     /**

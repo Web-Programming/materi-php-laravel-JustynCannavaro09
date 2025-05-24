@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\ControllerLatihan;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class MateriController extends Controller
@@ -12,9 +11,9 @@ class MateriController extends Controller
      */
     public function index()
     {
-        return view('latihanLayout.materi.index');
+        return view("materi.index");
     }
-    
+
     /**
      * Show the form for creating a new resource.
      */
@@ -36,23 +35,7 @@ class MateriController extends Controller
      */
     public function show(string $id)
     {
-        $materiList = [
-            1 => (object)[
-                'title' => 'Pengenalan Laravel',
-                'description' => 'Materi dasar tentang framework Laravel'
-            ],
-            2 => (object)[
-                'title' => 'Routing Laravel',
-                'description' => 'Membahas penggunaan route dan controller'
-            ],
-            3 => (object)[
-                'title' => 'Template',
-                'description' => 'Contoh Template'
-            ],
-        ];
-        
-        $materi = $materiList[$id];
-        return view('latihanLayout.materi.detail', compact('materi'));
+        //
     }
 
     /**
