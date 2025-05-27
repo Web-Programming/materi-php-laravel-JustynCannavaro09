@@ -11,8 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string("level", 50)->after("password");
+        Schema::table('prodis', function (Blueprint $table) {
+        $table->unsignedBigInteger('fakultas_id')
+            ->nullable()
+            ->after("nama");
+
+        $table->foreign('fakultas_id')
+            ->references('id')
+            ->on('fakultas');
         });
     }
 
@@ -21,8 +27,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn("level");
+        Schema::table('prodis', function (Blueprint $table) {
+            //
         });
     }
 };

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('materi', function (Blueprint $table) {
             $table->id();
+            $table->string('nama', 100);
+            $table->string('deskripsi', 255);
             $table->timestamps();
         });
     }

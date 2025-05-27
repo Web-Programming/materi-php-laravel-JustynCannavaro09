@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('mahasiswa', function (Blueprint $table) {
             $table->id();
-            $table->char('npm', 11);
-            $table->string('nama', 150);
-            $table->string('tempat_lahir', 100);
-            $table->string('tanggal_lahir'); //yyyy-mm-dd
+            $table->string('nama', 100);
+            $table->foreignId('prodi_id')->constrained('prodis')->onDelete('cascade');
+            $table->date('tanggal_lahir')->nullable();
+            $table->string('tempat_lahir', 100)->nullable();
             $table->timestamps();
         });
     }
